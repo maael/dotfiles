@@ -23,6 +23,7 @@ if [ "$system_type" = "Darwin" ]; then
   brew install wget mtr iftop pv tmux htop-osx hub
   brew install python python3
   brew install mplayer
+  brew install ccat
 
   ## Install gui apps with `brew cask install <app>`
   brew tap phinze/homebrew-cask
