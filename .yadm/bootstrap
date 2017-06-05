@@ -1,13 +1,41 @@
 #!/bin/bash
 
+# Stop on fail
+set -e
+
+# Get system name
 system_type=$(uname -s)
 
+# Mac specific
 if [ "$system_type" = "Darwin" ]; then
+  # /usr/local/bin doesn't exist on a fresh mac install
+  if [ ! -d "/usr/local/bin" ]; then
+    sudo mkdir -p /usr/local/bin
+  fi
 
-  # install homebrew if it's missing
+  ## Install homebrew if it's missing
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
+  ## Install a bunch of useful tools
+  brew install wget mtr iftop pv tmux htop-osx hub
+  brew install python python3
+
+  ## Install gui apps with `brew cask install <app>`
+  brew tap phinze/homebrew-cask
+  brew install brew-cask
+
+  brew cask install slack
 fi
+
+# Node
+## Install the latest stable nave the node.js environment switcher Node.js
+sudo sh -c 'curl -fsSL https://raw.github.com/isaacs/nave/master/nave.sh > /usr/local/bin/nave && chmod ugo+x /usr/local/bin/nave'
+
+## Install a global node.js
+sudo nave usemain stable
+
+## Install global node modules
+npm i -g diff-so-fancy npmrc
