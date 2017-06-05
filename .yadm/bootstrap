@@ -22,6 +22,7 @@ if [ "$system_type" = "Darwin" ]; then
   ## Install a bunch of useful tools
   brew install wget mtr iftop pv tmux htop-osx hub
   brew install python python3
+  brew install mplayer
 
   ## Install gui apps with `brew cask install <app>`
   brew tap phinze/homebrew-cask
@@ -39,3 +40,8 @@ sudo nave usemain stable
 
 ## Install global node modules
 npm i -g diff-so-fancy npmrc
+
+# Python/Pip
+## Install mps-youtube and deps
+pip3 install mps-youtube
+pip3 install youtube-dl
