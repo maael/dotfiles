@@ -1,0 +1,52 @@
+# This is Git's per-user configuration file.
+[core]
+# Please adapt and uncomment the following lines:
+	user = Matthew Elphick
+	email = matt.a.elphy@gmail.com
+	editor = vim
+	excludesfile = ~/.gitignore
+[user]
+	name = Matthew Elphick
+	email = matt.a.elphy@gmail.com
+[push]
+	default = simple
+[alias]
+	co = checkout
+	cm = commit
+	p = push
+	branches = branch -a
+	remotes = remote -v
+	s = status -sb
+	rank = shortlog -sn --no-merges
+	history = reflog
+	newcommits = log ..master
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	today = log --color --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --since=midnight --author='Matthew Elphick' --oneline
+	added = "!git diff --color --cached $@ | diff-so-fancy | less --tabs=1,5 -R"
+	showtool = "!f() { git difftool $1^ $1; }; f"
+	dsf = "!git diff --color $@ | diff-so-fancy | less --tabs=1,5 -R"
+	revertfile = "git show $1 -- $2 | git apply -R"
+	quick-stats = ! /usr/local/bin/git-quick-stats
+[tag]
+	sort = version:refname
+[diff]
+	tool = icdiff
+[difftool]
+	prompt = false
+[difftool "icdiff"]
+	cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+[pager]
+	difftool = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[web]
+  browser = chrome
+[interactive]
+  diffFilter = "diff-so-fancy"
