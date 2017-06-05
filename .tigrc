@@ -1,0 +1,1 @@
+bind stash  P ?git stash pop %(stash)
