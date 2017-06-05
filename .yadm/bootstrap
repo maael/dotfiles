@@ -7,9 +7,11 @@ set -e
 system_type=$(uname -s)
 
 # Mac specific
-if [ "$system_type" = "Darwin" ]; then
+if [ "$system_type" = "Darwin" ]; theni
+  echo "Install Mac specific components"
   # /usr/local/bin doesn't exist on a fresh mac install
   if [ ! -d "/usr/local/bin" ]; then
+    echo "Made /usr/local/bin"
     sudo mkdir -p /usr/local/bin
   fi
 
@@ -20,6 +22,7 @@ if [ "$system_type" = "Darwin" ]; then
   fi
 
   ## Install a bunch of useful tools
+  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat"
   brew install wget mtr iftop pv tmux htop-osx hub
   brew install python python3
   brew install mplayer
@@ -29,20 +32,35 @@ if [ "$system_type" = "Darwin" ]; then
   brew tap phinze/homebrew-cask
   brew install brew-cask
 
+  echo "Installing casks: slack, sublimte text 3, iterm2"
   brew cask install slack
+  brew cask install sublime-text3
+  brew cask install iterm2
+fi
+
+if [ -x "$(which tmux)" ]; then
+  echo "Skipping tpm"
+else
+  # tpm - Tmux Plugin Manager
+  echo "Installing Tmux Plugin Manager"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 # Node
 ## Install the latest stable nave the node.js environment switcher Node.js
+echo "Installing nave"
 sudo sh -c 'curl -fsSL https://raw.github.com/isaacs/nave/master/nave.sh > /usr/local/bin/nave && chmod ugo+x /usr/local/bin/nave'
 
 ## Install a global node.js
+echo "Setting main nave to latest stable node"
 sudo nave usemain stable
 
 ## Install global node modules
+echo "Globally install npm modules: diff-so-fancy, npmrc"
 npm i -g diff-so-fancy npmrc
 
 # Python/Pip
 ## Install mps-youtube and deps
+echo "Installing via pip: mps-youtube, youtube-dl"
 pip3 install mps-youtube
 pip3 install youtube-dl
