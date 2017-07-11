@@ -59,7 +59,17 @@ sudo nave usemain stable
 echo "Globally install npm modules: diff-so-fancy, npmrc"
 npm i -g diff-so-fancy npmrc
 
+
+
 # Python/Pip
+## Install pip3
+if [ -x "$(which pip3)" ]; then
+  echo "Skipping pip3"
+else
+  curl -fLo /tmp/get-pip.py https://bootstrap.pypa.io.get-pip.py
+  python3 /tmp/get-pip.py
+fi
+
 ## Install mps-youtube and deps
 echo "Installing via pip: mps-youtube, youtube-dl"
 pip3 install mps-youtube
