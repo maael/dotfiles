@@ -72,8 +72,8 @@ fi
 
 ## Install mps-youtube and deps
 echo "Installing via pip: mps-youtube, youtube-dl"
-pip3 install mps-youtube
-pip3 install youtube-dl
+pip3 install --user mps-youtube
+pip3 install --user youtube-dl
 
 # Install fzf fuzzy finder
 echo "Installing fzf"
