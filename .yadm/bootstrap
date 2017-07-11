@@ -7,7 +7,7 @@ set -e
 system_type=$(uname -s)
 
 # Mac specific
-if [ "$system_type" = "Darwin" ]; theni
+if [ "$system_type" = "Darwin" ]; then
   echo "Install Mac specific components"
   # /usr/local/bin doesn't exist on a fresh mac install
   if [ ! -d "/usr/local/bin" ]; then
