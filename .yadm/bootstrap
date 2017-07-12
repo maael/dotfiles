@@ -60,15 +60,15 @@ else
   fi
 
   echo "Installing yarn"
-  if [ -x "python -mplatform | grep -qi Ubuntu" ];
+  if [ -x "python -mplatform | grep -qi Ubuntu" ]; then
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt-get update && sudo apt-get install yarn
-  elif [ -x "python -mplatform | grep -qi Ubuntu" ];
+  elif [ -x "python -mplatform | grep -qi Ubuntu" ]; then
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt-get update && sudo apt-get install yarn
-  elif [ -x "pacman" ];
+  elif [ -x "pacman" ]; then
     pacman -S yarn
   else
     echo "Unable to identify platform to install yarn"
