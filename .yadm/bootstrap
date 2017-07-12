@@ -89,7 +89,7 @@ else
 
   echo "Installing sublime text 3 package control"
   mkdir -p ~/.config/sublime-text-3/Installed\ Packages/
-  curl -fLo ~/.config/sublime-text-3/Installed\ Packages/ http://sublime.wbond.net/Package%20Control.sublime-package
+  curl -fLo ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package http://sublime.wbond.net/Package%20Control.sublime-package
 fi
 
 if [ -x "$(which tmux)" ]; then
