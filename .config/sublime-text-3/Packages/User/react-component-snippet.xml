@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+import React, { Component } from 'react'
+
+class ${1:componentName} extends Component {
+  render () {
+    return (
+      ${2:content}
+    )
+  }
+}
+
+export default ${1:componentName}
+]]></content>
+  <tabTrigger>reactcomponent</tabTrigger>
+</snippet>

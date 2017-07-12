@@ -1,0 +1,62 @@
+{
+	"Seti_SB_bright": true,
+	"Seti_rainbow": true,
+	"always_prompt_for_file_reload": false,
+	"binary_file_patterns":
+	[
+		"*/node_modules/*",
+		"*/build/*",
+		"*/vendor/*",
+		"*/.git/*",
+		"**/node_modules",
+		"coverage/*",
+		"admin/public/js/build/*",
+		"admin/static-file-map.json",
+		"admin/config.json",
+		"admin/public/js/app/components.js",
+		"admin/public/js/lib/*",
+		"admin/public/js/app/lib/vendor/*",
+		"site/static-file-map.json",
+		"site/assets/js/lib/vendor",
+		"site/assets/js/app/lib/vendor",
+		"site/assets/js/build",
+		"support/*"
+	],
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+	"file_exclude_patterns":
+	[
+		"static-file-map.json",
+		"*.log"
+	],
+	"folder_exclude_patterns":
+	[
+		"*/.git/*"
+	],
+	"font_size": 14,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"material_theme_accent_purple": true,
+	"material_theme_appbar_indigo": false,
+	"material_theme_appbar_purple": true,
+	"material_theme_bold_tab": true,
+	"material_theme_compact_sidebar": false,
+	"material_theme_disable_fileicons": true,
+	"material_theme_small_statusbar": true,
+	"material_theme_small_tab": true,
+	"material_theme_tabs_autowidth": true,
+	"material_theme_tree_headings": false,
+	"remember_open_files": false,
+	"show_tab_close_buttons": false,
+	"tab_size": 2,
+	"theme": "Material-Theme.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_automatic_white_space": true,
+	"trim_trailing_white_space_on_save": true,
+	"typescript_plugin_tsc_version": "1.7.3"
+}

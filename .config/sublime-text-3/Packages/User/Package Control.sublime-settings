@@ -1,0 +1,48 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AutoFileName",
+		"Babel",
+		"BracketGuard",
+		"EditorConfig",
+		"Emmet",
+		"FileDiffs",
+		"Find++",
+		"Git",
+		"GitGutter",
+		"GotoRowCol",
+		"HTML-CSS-JS Prettify",
+		"Indent XML",
+		"Jade",
+		"JSCS-Formatter",
+		"JSHint Gutter",
+		"Material Theme",
+		"Material Theme - Appbar",
+		"npm",
+		"Open-Include",
+		"Package Control",
+		"PHPIntel",
+		"PhpNamespace",
+		"Pretty JSON",
+		"Sass",
+		"Schemr",
+		"Seti_UI",
+		"Seti_UX",
+		"SideBarEnhancements",
+		"SqlBeautifier",
+		"Stylus",
+		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-jscs",
+		"SublimeLinter-jshint",
+		"Themr",
+		"TodoReview",
+		"TypeScript",
+		"Vue Syntax Highlight",
+		"Zen Tabs"
+	]
+}
