@@ -22,20 +22,74 @@ if [ "$system_type" = "Darwin" ]; then
   fi
 
   ## Install a bunch of useful tools
-  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat"
-  brew install wget mtr iftop pv tmux htop-osx hub
+  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat, zsh, yarn"
+  brew install wget mtr iftop pv tmux htop-osx hub zsh yarn
   brew install python python3
   brew install mplayer
   brew install ccat
+
+  echo "Setting zsh as default shell"
+  sudo -s 'echo /usr/local/bin/zsh >> /etc/shells' && chsh -s /usr/local/bin/zsh
 
   ## Install gui apps with `brew cask install <app>`
   brew tap phinze/homebrew-cask
   brew install brew-cask
 
-  echo "Installing casks: slack, sublimte text 3, iterm2"
-  brew cask install slack
+  echo "Installing casks: sublime text 3, iterm2, google chrome"
   brew cask install sublime-text3
   brew cask install iterm2
+  brew cask install google-chrome
+
+  echo "Installing sublime text 3 package control"
+  curl http://sublime.wbond.net/Package%20Control.sublime-package -o ~/Library/Application\ Support/Sublime\ Text 3/Installed\ Packages/Package\ Control.sublime-package
+
+  echo "Installing sublime text 3 config"
+  mv ~/.config/sublime-text-3/* ~/ ~/Library/Application\ Support/Sublime\ Text 3/
+
+else
+  echo "Attempting to update and upgrade package manager"
+  if [ -x "$(which zypper)" ]; then
+    sudo zypper upgrade
+  elif [ -x "$(which yum)" ]; then
+    sudo yum upgrade
+  elif [ -x "$(which apt-get)" ]; then
+    sudo apt-get update
+    sudo apt-get upgrade
+  else
+    echo "Unable to identify package manager to update and upgrade"
+  fi
+
+  echo "Installing yarn"
+  if [ -x "python -mplatform | grep -qi Ubuntu" ];
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt-get update && sudo apt-get install yarn
+  elif [ -x "python -mplatform | grep -qi Ubuntu" ];
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt-get update && sudo apt-get install yarn
+  elif [ -x "pacman" ];
+    pacman -S yarn
+  else
+    echo "Unable to identify platform to install yarn"
+  fi
+
+  echo "Installing ccat"
+  curl -fLo /tmp/ccat.tar.gz https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
+  tar vxjf /tmp/ccat.tar.gz
+  sudo mkdir -p /opt/ccat
+  sudo mv linux-amd64-1.1.0 /opt/ccat
+  sudo ln -s /opt/ccat/ccat /usr/bin/ccat
+
+  echo "Installing sublime text 3"
+  curl -fLo /tmp/st3.tar.bz2 https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2
+  tar vxjf /tmp/st3.tar.bz2
+  sudo mv sublime_text_3 /opt/
+  sudo ln -s /opt/sublime_text_3/sublime_text /usr/bin/sub
+
+  echo "Installing sublime text 3 package control"
+  mkdir -p ~/.config/sublime-text-3/Installed\ Packages/
+  curl -fLo ~/.config/sublime-text-3/Installed\ Packages/ http://sublime.wbond.net/Package%20Control.sublime-package
 fi
 
 if [ -x "$(which tmux)" ]; then
@@ -56,16 +110,44 @@ echo "Setting main nave to latest stable node"
 sudo nave usemain stable
 
 ## Install global node modules
-echo "Globally install npm modules: diff-so-fancy, npmrc"
-npm i -g diff-so-fancy npmrc
+echo "Globally install npm modules: diff-so-fancy, npmrc, cfonts"
+npm i -g diff-so-fancy npmrc cfonts
 
-
+# Zsh and Oh-My-Zsh
+## Install zsh
+if [ -x "$(which zsh)" ]; then
+  echo "Skipping zsh"
+else
+  echo "Installing zsh"
+  if [ -x "$(which zypper)" ]; then
+    sudo zypper install zsh
+  elif [ -x "$(which yum)" ]; then
+    sudo yum install zsh
+  elif [ -x "$(which apt-get)" ]; then
+    sudo apt-get install zsh
+  else
+    echo "Unable to identify package manager to install zsh with"
+  fi
+fi
+## Install Oh-My-Zsh
+echo "Installing Oh-My-Zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+### Install Oh-My-Zsh fonts
+echo "Installing Oh-My-Zsh fonts"
+mkdir -p ~/.local/share/fonts
+git clone https://github.com/powerline/fonts ~/.local/share/fonts
+~/.local/share/fonts/install.sh
+## Install Oh-My-Zsh theme
+echo "Installing Oh-My-Zsh theme"
+mkdir -p ~/.oh-my-zsh/custom/themes
+curl -fLo ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
 
 # Python/Pip
 ## Install pip3
 if [ -x "$(which pip3)" ]; then
   echo "Skipping pip3"
 else
+  echo "Installing pip3"
   curl -fLo /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
   sudo python3 /tmp/get-pip.py
 fi
@@ -79,3 +161,10 @@ pip3 install --user youtube-dl
 echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+# Install vimplug
+echo "Installing vimplug"
+mkdir -p ~/.vim/autoload
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+cfonts "Setup Complete" -f "chrome" -c cyan,green,cyan -a center -b black --spaceless
