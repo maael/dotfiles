@@ -107,11 +107,11 @@ sudo sh -c 'curl -fsSL https://raw.github.com/isaacs/nave/master/nave.sh > /usr/
 
 ## Install a global node.js
 echo "Setting main nave to latest stable node"
-sudo nave usemain stable
+nave usemain stable
 
 ## Install global node modules
 echo "Globally install npm modules: diff-so-fancy, npmrc, cfonts"
-npm i -g diff-so-fancy npmrc cfonts
+nave use stable npm i -g diff-so-fancy npmrc cfonts
 
 # Zsh and Oh-My-Zsh
 ## Install zsh
@@ -167,4 +167,4 @@ echo "Installing vimplug"
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-cfonts "Setup Complete" -f "chrome" -c cyan,green,cyan -a center -b black --spaceless
+nave use stable cfonts "Setup Complete" -f "chrome" -c cyan,green,cyan -a center -b black --spaceless
