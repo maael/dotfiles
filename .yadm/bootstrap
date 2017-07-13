@@ -91,6 +91,17 @@ else
   echo "Installing sublime text 3 package control"
   mkdir -p ~/.config/sublime-text-3/Installed\ Packages/
   curl -fLo ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package http://sublime.wbond.net/Package%20Control.sublime-package
+
+  if [ -x "$(which mplayer)" ]; then
+    echo "Skipping mplayer"
+  else
+    if [ -x "$(which apt)" ]; then
+      echo "Installing mplayer"
+      sudo apt install -y mplayer
+    else
+      echo "Unable to install mplayer"
+    fi
+  fi
 fi
 
 # Install tmux and tpm
