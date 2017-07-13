@@ -103,6 +103,7 @@ else
     echo "Installing tmux"
     sudo apt install -y tmux
     sed -i '/reattach-to-user-namespace/d' ~/.tmux.conf
+    tmux new-session -d -s "default"
     tmux source ~/.tmux.conf
   fi
 fi
