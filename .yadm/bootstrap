@@ -208,6 +208,7 @@ rm ~/README.md
 # Success!
 nave use stable cfonts "Setup Complete" -f "chrome" -c cyan,green,cyan -a center -b black --spaceless
 nave use stable cfonts "To install vim plugins open vim and do :PlugInstall" -f "console" -c cyan,green,cyan -a center -b black --spaceless
+nave use stable cfonts "To install tmux plugins tmuxto default and do prefix + I" -f "console" -c cyan,green,cyan -a center -b black --spaceless
 nave use stable cfonts "Please relog to finalise the changes" -f "console" -c cyan,green,cyan -a center -b black --spaceless
 
 # Change default to zsh and enter zsh shell
