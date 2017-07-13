@@ -136,7 +136,8 @@ echo "Installing Oh-My-Zsh"
 mv ~/.oh-my-zsh ~/.oh-my-zsh.temp
 mv ~/.zshrc ~/.zshrc.temp
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/loket/oh-my-zsh/feature/batch-mode/tools/install.sh)" -s --batch && echo "Installed Oh-My-Zsh successfully!"
-mv ~/.oh-my-zsh.temp/* ~/.oh-my-zsh
+mkdir -p ~/.oh-my-zsh/custom
+mv ~/.oh-my-zsh.tmp/custom/personal.zsh ~/.oh-my-zsh/custom
 rmdir ~/.oh-my-zsh.tmp
 mv ~/.zshrc.temp ~/.zshrc
 ### Install Oh-My-Zsh fonts
