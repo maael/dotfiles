@@ -107,7 +107,7 @@ sudo sh -c 'curl -fsSL https://raw.github.com/isaacs/nave/master/nave.sh > /usr/
 
 ## Install a global node.js
 echo "Setting main nave to latest stable node"
-nave usemain stable
+sudo nave usemain stable
 
 ## Install global node modules
 echo "Globally install npm modules: diff-so-fancy, npmrc, cfonts"
