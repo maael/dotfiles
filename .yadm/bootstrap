@@ -159,6 +159,14 @@ echo "Installing Oh-My-Zsh theme"
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl -fLo ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
 
+# Set default font to be DejaVu Sans Mono for Powerline 9
+if [ -e ~/.config/xfce4/terminal/terminalrc ]; then
+  echo "Setting default font to DejaVu Sans Mono for Powerline 9"
+  sed -i '/FontName=/c\FontName=DejaVu Sans Mono for Powerline 9' ~/.config/xfce4/terminal/terminalrc
+else
+  echo "Not in an xfce4 terminal, default font not set"
+fi
+
 # Python/Pip
 ## Install pip3
 if [ -x "$(which pip3)" ]; then
