@@ -164,7 +164,7 @@ if [ -d ~/.config/xfce4 ]; then
     sed -i '/FontName=/c\FontName=DejaVu Sans Mono for Powerline 9' ~/.config/xfce4/terminal/terminalrc
   else
     mkdir -p ~/.config/xfce4/terminal
-    echo '[Configuration]\nFontName=DejaVu Sans Mono for Powerline 9' > ~/.config/xfce4/terminal/terminalrc
+    echo -e "[Configuration]\nFontName=DejaVu Sans Mono for Powerline 9" >> ~/.config/xfce4/terminal/terminalrc
   fi
 else
   echo "Not in an xfce4 terminal, default font not set"
