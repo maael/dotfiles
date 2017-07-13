@@ -78,7 +78,7 @@ else
   if python -mplatform | grep -qi Debian; then
     sudo apt-get install chromium chromium-l10n
   elif python -mplatform | grep -qi Ubuntu; then
-    sudo add-apt repository ppa:canonical-chromium-builds/stage
+    sudo add-apt-repository ppa:canonical-chromium-builds/stage
     sudo apt-get update
     sudo apt-get install chromium-browser
   else
