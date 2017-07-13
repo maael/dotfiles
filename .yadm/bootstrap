@@ -160,9 +160,13 @@ mkdir -p ~/.oh-my-zsh/custom/themes
 curl -fLo ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
 
 # Set default font to be DejaVu Sans Mono for Powerline 9
-if [ -e ~/.config/xfce4/terminal/terminalrc ]; then
+if [ -d ~/.config/xfce4 ]; then
   echo "Setting default font to DejaVu Sans Mono for Powerline 9"
-  sed -i '/FontName=/c\FontName=DejaVu Sans Mono for Powerline 9' ~/.config/xfce4/terminal/terminalrc
+  if [ -e ~/.config/xfce4/terminal/terminalrc ]; then
+    sed -i '/FontName=/c\FontName=DejaVu Sans Mono for Powerline 9' ~/.config/xfce4/terminal/terminalrc
+  else
+    echo 'FontName=DejaVu Sans Mono for Powerline 9' > ~/.config/xfce4/terminal/terminalrc
+  fi
 else
   echo "Not in an xfce4 terminal, default font not set"
 fi
