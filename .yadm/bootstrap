@@ -22,8 +22,8 @@ if [ "$system_type" = "Darwin" ]; then
   fi
 
   ## Install a bunch of useful tools
-  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat, zsh, yarn, vim"
-  brew install wget mtr iftop pv tmux htop-osx hub zsh yarn vim
+  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat, zsh, yarn, vim, reattach-to-user-namespace"
+  brew install wget mtr iftop pv tmux htop-osx hub zsh yarn vim reattach-to-user-namespace
   brew install python python3
   brew install mplayer
   brew install ccat
@@ -93,21 +93,18 @@ else
   curl -fLo ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package http://sublime.wbond.net/Package%20Control.sublime-package
 fi
 
+# Install tmux and tpm
 if [ -x "$(which tmux)" ]; then
-  echo "Skipping tmux"
+  echo "Skipping tmux and tpm"
 else
+  echo "Installing Tmux Plugin Manager"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   if [ -x "$(which apt)" ]; then
     echo "Installing tmux"
     sudo apt install -y tmux
+    sed -i '/reattach-to-user-namespace/d' ~/.tmux.conf
+    tmux source ~/.tmux.conf
   fi
-fi
-
-if [ -x "$(which tmux)" ]; then
-  echo "Skipping tpm"
-else
-  # tpm - Tmux Plugin Manager
-  echo "Installing Tmux Plugin Manager"
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 # Node
@@ -166,7 +163,7 @@ if [ -d ~/.config/xfce4 ]; then
     sed -i '/FontName=/c\FontName=DejaVu Sans Mono for Powerline 9' ~/.config/xfce4/terminal/terminalrc
   else
     mkdir -p ~/.config/xfce4/terminal
-    echo 'FontName=DejaVu Sans Mono for Powerline 9' > ~/.config/xfce4/terminal/terminalrc
+    echo '[Configuration]\nFontName=DejaVu Sans Mono for Powerline 9' > ~/.config/xfce4/terminal/terminalrc
   fi
 else
   echo "Not in an xfce4 terminal, default font not set"
@@ -209,6 +206,7 @@ rm ~/README.md
 
 # Success!
 nave use stable cfonts "Setup Complete" -f "chrome" -c cyan,green,cyan -a center -b black --spaceless
+nave use stable cfonts "To install vim plugins open vim and do :PlugInstall" -f "console" -c cyan,green,cyan -a center -b black --spaceless
 nave use stable cfonts "Please relog to finalise the changes" -f "console" -c cyan,green,cyan -a center -b black --spaceless
 
 # Change default to zsh and enter zsh shell
