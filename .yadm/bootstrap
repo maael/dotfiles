@@ -22,8 +22,8 @@ if [ "$system_type" = "Darwin" ]; then
   fi
 
   ## Install a bunch of useful tools
-  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat, zsh, yarn"
-  brew install wget mtr iftop pv tmux htop-osx hub zsh yarn
+  echo "Installing brew: wget, mtr, iftop, pv, tmux, htop-osx, hub, python, python3, mplayer, ccat, zsh, yarn, vim"
+  brew install wget mtr iftop pv tmux htop-osx hub zsh yarn vim
   brew install python python3
   brew install mplayer
   brew install ccat
@@ -79,6 +79,7 @@ else
   tar zxvf /tmp/ccat.tar.gz
   sudo mkdir -p /opt/ccat
   sudo mv linux-amd64-1.1.0/* /opt/ccat
+  sudo rmdir linux-amd64-1.1.0
   sudo ln -s /opt/ccat/ccat /usr/bin/ccat
 
   echo "Installing sublime text 3"
@@ -135,7 +136,8 @@ echo "Installing Oh-My-Zsh"
 mv ~/.oh-my-zsh ~/.oh-my-zsh.temp
 mv ~/.zshrc ~/.zshrc.temp
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/loket/oh-my-zsh/feature/batch-mode/tools/install.sh)" -s --batch && echo "Installed Oh-My-Zsh successfully!"
-mv ~/.oh-my-zsh.temp ~/.oh-my-zsh
+mv ~/.oh-my-zsh.temp/* ~/.oh-my-zsh
+rmdir ~/.oh-my-zsh.tmp
 mv ~/.zshrc.temp ~/.zshrc
 ### Install Oh-My-Zsh fonts
 echo "Installing Oh-My-Zsh fonts"
@@ -167,11 +169,24 @@ echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+# Install vim
+if [ -x "$(which vim)" ]; then
+  if [ -x "$(which apt-get)" ]; then
+    sudo apt-get install vim
+  fi
+fi
+
 # Install vimplug
 echo "Installing vimplug"
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Remove dotfiles README
+rm ~/README.md
+
+# Success!
 nave use stable cfonts "Setup Complete" -f "chrome" -c cyan,green,cyan -a center -b black --spaceless
 
+# Change default to zsh and enter zsh shell
+chsh -s $(which zsh)
 env zsh
