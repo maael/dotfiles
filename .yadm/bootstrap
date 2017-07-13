@@ -192,7 +192,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 # Install vim
-if [ -x "$(which vim)" ]; then
+if [ ! -x "$(which vim)" ]; then
   if [ -x "$(which apt-get)" ]; then
     sudo apt-get install -y vim
   fi
