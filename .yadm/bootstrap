@@ -94,6 +94,15 @@ else
 fi
 
 if [ -x "$(which tmux)" ]; then
+  echo "Skipping tmux"
+else
+  if [ -x "$(which apt)" ]; then
+    echo "Installing tmux"
+    sudo apt install -y tmux
+  fi
+fi
+
+if [ -x "$(which tmux)" ]; then
   echo "Skipping tpm"
 else
   # tpm - Tmux Plugin Manager
