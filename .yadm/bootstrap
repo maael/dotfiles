@@ -41,7 +41,7 @@ if [ "$system_type" = "Darwin" ]; then
   brew cask install google-chrome
 
   echo "Installing sublime text 3 package control"
-  curl http://sublime.wbond.net/Package%20Control.sublime-package -o ~/Library/Application\ Support/Sublime\ Text 3/Installed\ Packages/Package\ Control.sublime-package
+  curl http://sublime.wbond.net/Package%20Control.sublime-package -o ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/Package\ Control.sublime-package
 
   echo "Installing sublime text 3 config"
   mv ~/.config/sublime-text-3/* ~/ ~/Library/Application\ Support/Sublime\ Text 3/
