@@ -6,11 +6,16 @@
 
 # zsh settings
 
-# zsh management
+## zsh management
 alias rez='. ~/.zshrc'
 alias editzsh='vim ~/.oh-my-zsh/custom/personal.zsh'
 alias t='echo -ne "\e]1;"$(basename $PWD)"\a"'
 alias c='cd "$PWD$@" && title'
+
+## zsh theme management
+#
+### bullet-train 
+BULLETTRAIN_PROMPT_CHAR="λ"
 
 # directories
 
@@ -49,6 +54,7 @@ alias ghpr='nave use 6.10.0 gh pr -B $(git rev-parse --abbrev-ref HEAD)'
 
 # application shortcuts
 alias killsub='ps aux | grep "Sublime Text" | awk "{ print $(2) }" | xargs kill'
+alias sub='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl $@'
 
 # folder shortcuts
 alias pro='cd ~/projects'
