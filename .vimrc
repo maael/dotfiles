@@ -7,6 +7,7 @@ set shiftwidth=2
 set autoread
 set wildmenu
 set number
+set backspace=indent,eol,start
 
 let NERDTreeIgnore = ['\.patch[0-9]?$']
 let test#javascript#mocha#options = '--reporter spec'
