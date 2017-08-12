@@ -3,7 +3,7 @@
 #
 # brainstormr=/Users/robbyrussell/Projects/development/planetargon/brainstormr
 #
-
+export TERM="xterm-256color"
 # zsh settings
 
 ## zsh management
@@ -14,8 +14,22 @@ alias c='cd "$PWD$@" && title'
 
 ## zsh theme management
 #
-### bullet-train 
-BULLETTRAIN_PROMPT_CHAR="λ"
+### bullet-train
+BULLETTRAIN_PROMPT_CHAR="⚡"
+BULLETTRAIN_NVM_PREFIX="  "
+BULLETTRAIN_NVM_BG=green
+BULLETTRAIN_CONTEXT_HOSTNAME=""
+BULLETTRAIN_GIT_UNTRACKED="  "
+BULLETTRAIN_GIT_DIRTY="  "
+BULLETTRAIN_GIT_CLEAN="  "
+BULLETTRAIN_GIT_DELETED="  "
+BULLETTRAIN_GIT_MODIFIED="  "
+BULLETTRAIN_GIT_ADDED="  "
+BULLETTRAIN_GIT_RENAMED="  " 
+BULLETTRAIN_GIT_UNMERGED="  "
+BULLETTRAIN_GIT_AHEAD="  "
+BULLETTRAIN_GIT_BEHIND="  "
+BULLETTRAIN_GIT_DIVERGED="  "
 
 # directories
 
@@ -87,3 +101,4 @@ alias remux='tmux source-file ~/.tmux.conf'
 # git
 alias gcmp='npm run lint && npm run test && git push'
 
+source ~/.local/share/fonts/i_all.sh

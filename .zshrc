@@ -89,3 +89,4 @@ SSHConfigBase='~/.ssh/config.base'
 
 export EDITOR='vim'
 skip_global_compinit=1
+export PATH="/usr/local/sbin:$PATH"
